@@ -1,4 +1,0 @@
-build:
-  docker:
-    api: API/Dockerfile
-    app: APP/Dockerfile
