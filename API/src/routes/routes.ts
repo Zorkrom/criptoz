@@ -4,7 +4,7 @@ import { Actions } from '../actions'
 const router = Router()
 
 router.get('/', (res: Response) => {
-    const salutation: string = Actions.salute()
+    const salutation = Actions.api()
     res.send(salutation)
 })
     
