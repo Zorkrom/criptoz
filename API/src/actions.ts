@@ -1,10 +1,15 @@
 import Greetings from "./services/greetings"
 import axios from 'axios';
+import Configuration from "./services/configuration";
 
 export class Actions{
 
     public static salute():string{
         return Greetings.salute('Hola mundo')
+    }
+
+    public static retrieveName():string{
+        return new Configuration().retrieveDenomination()
     }
 
     public static api(){

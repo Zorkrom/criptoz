@@ -4,6 +4,6 @@ export default class Configuration {
     repository: Repository = new Repository()
 
     public retrieveDenomination(): string {
-        return this.repository.appName() + ' ' + this.repository.version()
+        return this.repository.appName()
     }
 }
