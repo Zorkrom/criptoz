@@ -1,6 +1,6 @@
 <div class="container mb-4 mt-2 w-50">
     <div class="searchbox input-group input-group-lg">
-      <input type="text" class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+      <input  type="text"  [(ngModel)]="searchTerm" class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm" (keyup)="search()">
       <img class="searchbox__icon" src="../../assets/search.svg"> 
     </div>
 </div>

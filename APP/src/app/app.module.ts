@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { DenominationComponent } from './denomination/denomination.component';
 import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { SearchComponent } from './search/search.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

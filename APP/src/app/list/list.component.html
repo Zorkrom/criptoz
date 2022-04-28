@@ -1,3 +1,4 @@
+<app-search (onChange)="filterByName($event)"></app-search>
 <div class="container">
     <table class="table table-dark table-hover ">
         <thead>
@@ -8,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let coin of allCoins; let i = index">
+            <tr *ngFor="let coin of filteredCoins; let i = index">
                 <td class="text-muted">{{i+1}}</td>
                 <td>
                     <img [src]="coin.image" style="width: 2rem;">
