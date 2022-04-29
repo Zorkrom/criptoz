@@ -1,18 +1,58 @@
 <div class="container goBack mb-4 mt-2 w-50">
-    <div class="searchbox input-group input-group-lg" (click)="navigate()">
-      <div class="searchbox__input form-control bg-dark" aria-label="Large"
-        aria-describedby="inputGroup-sizing-sm" ></div>
-      <img class="search searchbox__icon" src="../../assets/arrow-left.svg" >
+  <div class="searchbox input-group input-group-lg" (click)="navigate()">
+    <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm"></div>
+    <img class="search searchbox__icon" src="../../assets/arrow-left.svg">
+  </div>
+</div>
+
+<div class="container header">
+  <img src="{{coin.image.large}}" alt="" width="100px">
+  <h1 class="ms-3">{{coin.name}}</h1>
+  <h3 class="text-muted text-uppercase ms-2">{{coin.symbol}}</h3>
+</div>
+
+<div class="container details">
+  <div class="info">
+    <h1>${{coin.market_data.current_price.usd}} USD</h1>
+    <h5 class="ms-2 mt-1" [ngClass]="coin.market_data.price_change_24h > 0 ? 'text-success':'text-danger'">
+      {{coin.market_data.price_change_24h}}</h5>
+  </div>
+
+
+  <div class="info_important">
+    <div class="mt-5">
+      <label class="category">Highest Price 24h (USD)</label>
+      <h4>{{coin.market_data.high_24h.usd}}</h4>
+    </div>
+    <div class="mt-5 ms-4">
+      <label class="category">Market Cap (USD)</label>
+      <h4>{{coin.market_data.market_cap.usd}}</h4>
+    </div>
+    <div class="mt-5 ms-4">
+      <label class="category">Circulating Supply</label>
+      <h4>{{coin.market_data.circulating_supply}}</h4>
+    </div>
+    <div class="mt-5 ms-4">
+      <label class="category">Max Supply</label>
+      <h4>{{coin.market_data.max_supply}}</h4>
     </div>
   </div>
 
-<div class="container header">
-        <img src="{{coin.image.large}}" alt="" width="100px">
-        <h1 class="ms-3">{{coin.name}}</h1>
-        <h3 class="text-muted text-uppercase ms-2">{{coin.symbol}}</h3>
 </div>
-
-<div class="container info">
-    <h1>${{coin.market_data.current_price.usd}} USD</h1>
-    <h5 class="ms-2 mt-1" [ngClass]="coin.market_data.price_change_24h > 0 ? 'text-success':'text-danger'">{{coin.market_data.price_change_24h}}</h5>
+<div class="container footer">
+  <div class="info_important">
+    <h3>About</h3>
+    <div class="social_media">
+      <a href="{{coin.links.homepage}}">
+        <img src="../../assets//globe.svg">
+      </a>
+      <a href="{{coin.links.subreddit_url}}">
+        <img src="../../assets//reddit.svg">
+      </a>
+      <a href="http://twitter.com/{{coin.links.twitter_screen_name}}">
+        <img src="../../assets//twitter.svg">
+      </a>
+    </div>
+  </div>
+  <div [innerHTML]='coin.description.en'></div>
 </div>
