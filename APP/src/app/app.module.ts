@@ -7,6 +7,7 @@ import { ListComponent } from './list/list.component';
 import { DenominationComponent } from './denomination/denomination.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { DetailsComponent } from './details/details.component';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ListComponent,
     DenominationComponent,
-    SearchComponent
+    SearchComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

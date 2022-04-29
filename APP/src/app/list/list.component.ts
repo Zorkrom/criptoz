@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Coin {
   id: string
@@ -27,7 +28,7 @@ export class ListComponent implements OnInit {
     'Price Change',
     '24h Volume'
   ]
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.getCoins()
@@ -38,7 +39,6 @@ export class ListComponent implements OnInit {
       'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .subscribe((res) => {
         this.allCoins = res as Array<Coin>
-        console.log(this.allCoins)
         this.putThousandCommasPrice()
         this.putThousandCommasVolume()
       })
@@ -68,5 +68,8 @@ export class ListComponent implements OnInit {
     this.allCoins.forEach((coin, index) => {
       if (coin.name.includes(this.searchTerm)) this.filteredCoins.push(coin)
     })
+  }
+  navigate(coinID:string){
+    this.router.navigate(['details/',coinID])
   }
 }
