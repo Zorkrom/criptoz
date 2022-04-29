@@ -1,6 +1,6 @@
 <app-search (onChange)="filterByName($event)"></app-search>
 <div class="container coinList table-responsive ">
-    <table class="coinList table  table-hover ">
+    <table class="coinList table">
         <thead>
             <tr>
                 <th *ngFor="let header of headers">
@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let coin of filteredCoins; let i = index" (mouseup)="navigate(coin.id)">
+            <tr class="selected" *ngFor="let coin of filteredCoins; let i = index" (mouseup)="navigate(coin.id)">
                 <td class="text-muted">{{i+1}}</td>
                 <td>
                     <img [src]="coin.image" style="width: 2rem;">
@@ -21,7 +21,7 @@
                     </span>
                 </td>
                 <td>
-                    {{coin.current_price}}$
+                    ${{coin.current_price}}
                 </td>
                 <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success':'text-danger'">
                     {{coin.price_change_percentage_24h}}

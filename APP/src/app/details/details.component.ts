@@ -1,16 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Coin {
   id: string
   name: string
   symbol: string
   image: {
-    large:string
-    small:string
+    large: string
+    small: string
   }
-  current_price: string
+  market_data: {
+    current_price: {
+      usd:string
+    }
+    price_change_24h:number
+  }
 }
 
 @Component({
@@ -21,29 +26,35 @@ interface Coin {
 export class DetailsComponent implements OnInit {
 
   coinID: string = ''
-  coin:Coin = {
+  coin: Coin = {
     id: "",
-  name: "",
-  symbol: "",
-  image: {
-    large:"",
-    small:""
-  },
-  current_price: ""
+    name: "",
+    symbol: "",
+    image: {
+      large: "",
+      small: ""
+    },
+    market_data: {
+      current_price: {
+        usd:""
+      },
+      price_change_24h:0
+    }
   }
-  
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.coinID = this.route.snapshot.paramMap.get('id') || 'No hay id'
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}`)
-    .subscribe(res=>{
-      this.coin = res as Coin
-      this.coin.symbol="("+this.coin.symbol+")"
-    console.log(this.coin)
-
-    })
+      .subscribe(res => {
+        this.coin = res as Coin
+        this.coin.symbol = "(" + this.coin.symbol + ")"
+      })
   }
-
+  
+  navigate() {
+    this.router.navigate([''])
+  }
 }

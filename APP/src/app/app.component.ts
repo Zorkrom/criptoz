@@ -7,6 +7,7 @@ import { fader } from "./route-animations";
   styleUrls: ['./app.component.scss'],
   animations: [
     fader
+    //slider
   ]
 })
 export class AppComponent {

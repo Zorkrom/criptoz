@@ -5,7 +5,7 @@ import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: ListComponent },
+  { path: 'list', component: ListComponent ,data:{animation:'isLeft'}},
   { path: 'details/:id', component: DetailsComponent, data:{animation : 'isRight'} },
 ];
 
