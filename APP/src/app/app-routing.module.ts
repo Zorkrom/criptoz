@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component';
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'list', component: ListComponent },
-  { path: 'details/:id', component: DetailsComponent },
+  { path: 'details/:id', component: DetailsComponent, data:{animation : 'isRight'} },
 ];
 
 @NgModule({
