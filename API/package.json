@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/a7899/seed.git"
+    "url": "git+https://github.com/Zorkrom/criptoz.git"
   },
   "keywords": [
     "express",
@@ -18,9 +18,9 @@
   "author": "Álvaro Real Aloy",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/a7899/seed/issues"
+    "url": "https://github.com/Zorkrom/criptoz/issues"
   },
-  "homepage": "https://gitlab.com/a7899/seed#readme",
+  "homepage": "https://github.com/Zorkrom/criptoz",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",

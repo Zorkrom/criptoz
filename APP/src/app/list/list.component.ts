@@ -6,9 +6,9 @@ interface Coin {
   name: string
   symbol: string
   image: string
-  current_price: number
+  current_price: string
   price_change_percentage_24h: number
-  total_volume: number
+  total_volume: string
 }
 @Component({
   selector: 'app-list',
@@ -31,22 +31,32 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoins()
-    this.allCoins.forEach(coin => {
-      coin.total_volume = parseInt(new Intl.NumberFormat().format(coin.total_volume))
-    })
-    console.log(this.allCoins)
   }
 
   getCoins() {
     this.http.get(
       'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .subscribe((res) => {
-        
         this.allCoins = res as Array<Coin>
-        this.filteredCoins = this.allCoins
+        console.log(this.allCoins)
+        this.putThousandCommasPrice()
+        this.putThousandCommasVolume()
       })
 
-    
+
+  }
+  putThousandCommasVolume(){
+    this.allCoins.forEach(coin => {
+      coin.total_volume = new Intl.NumberFormat().format(parseInt(coin.total_volume))
+    })
+    this.filteredCoins = this.allCoins
+  }
+  putThousandCommasPrice(){
+    this.allCoins.forEach(coin => {
+      if(parseFloat(coin.current_price)>=1){
+      coin.current_price = coin.current_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      }
+    })
   }
   filterByName(event: string) {
     this.searchTerm = ''
