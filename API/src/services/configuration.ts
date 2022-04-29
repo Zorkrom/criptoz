@@ -1,4 +1,4 @@
-import Repository from "./repository"
+import Repository from "../repositories/repository"
 
 export default class Configuration {
     repository: Repository = new Repository()

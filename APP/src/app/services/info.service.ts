@@ -17,7 +17,7 @@ export class InfoService {
     const requestOptions: Object = {
       responseType: 'text'
     }
-    return this.http.get<string>(url, requestOptions);
+    return this.http.get<string>(url, requestOptions)
 
   }
 }

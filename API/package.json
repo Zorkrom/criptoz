@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "API seed for Belike Academy",
+  "description": "API for CriptoZ",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -12,25 +12,19 @@
     "url": "git+https://gitlab.com/a7899/seed.git"
   },
   "keywords": [
-    "seed",
-    "academy",
-    "belike",
     "express",
     "node"
   ],
-  "author": "Belike academy",
+  "author": "Álvaro Real Aloy",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/a7899/seed/issues"
   },
   "homepage": "https://gitlab.com/a7899/seed#readme",
   "dependencies": {
-    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "express": "^4.17.2",
-    "i18next": "^21.6.11",
-    "i18next-fs-backend": "^1.1.4",
-    "i18next-http-middleware": "^3.1.6",
+    "mongodb": "^4.5.0",
     "winston": "^3.5.1"
   },
   "devDependencies": {

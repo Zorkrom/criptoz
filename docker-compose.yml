@@ -8,7 +8,7 @@ services:
     volumes:
       - ./API:/API
       - /API/node_modules
-    container_name: API_cripto
+    container_name: API_cryptoz
 
   app:
     build: ./APP
@@ -20,4 +20,12 @@ services:
       - /APP/dist
     depends_on:
       - api
-    container_name: APP_cripto
+    container_name: APP_cryptoz
+  
+  mongo:
+    image: mongo:5.0.6
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-volume:/data/db
+    container_name: mongo_cryptoz
