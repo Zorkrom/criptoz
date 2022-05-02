@@ -24,13 +24,19 @@
 	&_important {
 		display: flex;
 		justify-content: space-between;
+
+		&_option:hover {
+			color: pink;
+		}
 	}
 }
-.social_media{
+
+.social_media {
 	display: flex;
 	justify-content: space-between;
 	width: 100px;
 }
+
 .footer {
 	background-color: #202022c9;
 	border-radius: 20px;

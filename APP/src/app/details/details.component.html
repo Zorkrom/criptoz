@@ -12,10 +12,21 @@
 </div>
 
 <div class="container details">
-  <div class="info">
-    <h1>${{coin.market_data.current_price.usd}} USD</h1>
-    <h5 class="ms-2 mt-1" [ngClass]="coin.market_data.price_change_24h > 0 ? 'text-success':'text-danger'">
-      {{coin.market_data.price_change_24h}}</h5>
+  <div class="info info_important">
+    <div class="info_important">
+      <h1>${{coin.market_data.current_price.usd}} USD</h1>
+      <h5 class="ms-2 mt-1" [ngClass]="coin.market_data.price_change_24h > 0 ? 'text-success':'text-danger'">
+        {{coin.market_data.price_change_24h}}</h5>
+    </div>
+    <div class="info_important">
+      <h5 (click)="getDataLast24h()" class="info_important_option">24h</h5>
+      <h5 class="ms-2 text-muted">/</h5>
+      <h5 (click)="getDataFromDays(7)" class="ms-2 info_important_option">7d</h5>
+      <h5 class="ms-2 text-muted">/</h5>
+      <h5 (click)="getDataFromDays(30)" class="ms-2 info_important_option">30d</h5>
+      <h5 class="ms-2 text-muted">/</h5>
+      <h5 (click)="getDataFromDays(365)" class="ms-2 info_important_option">1y</h5>
+    </div>
   </div>
 
   <div class="container">
