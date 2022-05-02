@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Chart } from 'chart.js';
 
 interface Coin {
   id: string
@@ -33,6 +34,13 @@ interface Coin {
     max_supply:string
   }
 }
+interface Prices{
+  prices:Array<Array<number>>
+}
+interface Price{
+  price:number,
+  date:number
+}
 
 @Component({
   selector: 'app-details',
@@ -41,7 +49,8 @@ interface Coin {
 })
 export class DetailsComponent implements OnInit {
 
-  chart = {}
+  prices: Array<number> = []
+  dates: Array<string> = []
   coinID: string = ''
   coin: Coin = {
     id: "",
@@ -77,18 +86,57 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
+  
   ngOnInit(): void {
+
+    
     this.coinID = this.route.snapshot.paramMap.get('id') || 'No hay id'
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}`)
       .subscribe(res => {
         this.coin = res as Coin
         this.coin.market_data.market_cap.usd = new Intl.NumberFormat().format(parseInt(this.coin.market_data.market_cap.usd))
-        this.coin.market_data.high_24h.usd = "$"+new Intl.NumberFormat().format(parseInt(this.coin.market_data.high_24h.usd))
+        this.coin.market_data.high_24h.usd = "$"+new Intl.NumberFormat().format(parseFloat(this.coin.market_data.high_24h.usd))
         this.coin.market_data.circulating_supply = new Intl.NumberFormat().format(parseInt(this.coin.market_data.circulating_supply))+" "+this.coin.symbol.toUpperCase()
         this.coin.market_data.max_supply = new Intl.NumberFormat().format(parseInt(this.coin.market_data.max_supply))
         this.coin.links.homepage = this.coin.links.homepage.toString().split(',')[0]
         this.coin.symbol = "(" + this.coin.symbol + ")"
       })
+    this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}/market_chart?vs_currency=usd&days=1`)
+      .subscribe(res => {
+        const allPrices = Array.from((res as Prices).prices)
+        allPrices.forEach((price:Array<number>) => {
+          this.dates.push(new Date(price[0]).getHours()+":"+getMinutes(price[0]))
+          this.prices.push(price[1])
+        })
+        const myChart = new Chart("myChart", {
+          type: 'line',
+          data: {
+              labels: this.dates,
+              datasets: [{
+                  data: this.prices,
+                  borderWidth: 1
+              }]
+          },
+          options: {
+            plugins:{
+              legend:{
+                display:false
+              }
+            },
+              scales: {
+                x:{}
+              }
+          }
+      })
+      function getMinutes(date:number){
+        const newDate:Date = new Date(date)
+        const minutes:string = newDate.getMinutes().toString()
+        if(minutes.length<2)return "0"+minutes
+        return minutes
+      }
+      })
+
+      
   }
   
   navigate() {

@@ -18,22 +18,24 @@
       {{coin.market_data.price_change_24h}}</h5>
   </div>
 
-
+  <div class="container">
+    <canvas id="myChart"></canvas>
+  </div>
   <div class="info_important">
     <div class="mt-5">
-      <label class="category">Highest Price 24h (USD)</label>
+      <label class="category text-muted">Highest Price 24h (USD)</label>
       <h4>{{coin.market_data.high_24h.usd}}</h4>
     </div>
     <div class="mt-5 ms-4">
-      <label class="category">Market Cap (USD)</label>
+      <label class="category text-muted">Market Cap (USD)</label>
       <h4>{{coin.market_data.market_cap.usd}}</h4>
     </div>
     <div class="mt-5 ms-4">
-      <label class="category">Circulating Supply</label>
+      <label class="category text-muted">Circulating Supply</label>
       <h4>{{coin.market_data.circulating_supply}}</h4>
     </div>
     <div class="mt-5 ms-4">
-      <label class="category">Max Supply</label>
+      <label class="category text-muted">Max Supply</label>
       <h4>{{coin.market_data.max_supply}}</h4>
     </div>
   </div>
