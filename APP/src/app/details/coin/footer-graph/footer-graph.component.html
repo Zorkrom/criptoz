@@ -1,0 +1,17 @@
+<div class="container footer">
+    <div class="info_important">
+      <h3>About</h3>
+      <div class="social_media">
+        <a href="{{coin.links.homepage}}">
+          <img src="../../assets//globe.svg">
+        </a>
+        <a href="{{coin.links.subreddit_url}}">
+          <img src="../../assets//reddit.svg">
+        </a>
+        <a href="http://twitter.com/{{coin.links.twitter_screen_name}}">
+          <img src="../../assets//twitter.svg">
+        </a>
+      </div>
+    </div>
+    <div [innerHTML]='coin.description.en'></div>
+</div>

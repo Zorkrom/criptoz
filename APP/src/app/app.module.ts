@@ -1,15 +1,18 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './list/list.component';
 import { DenominationComponent } from './denomination/denomination.component';
-import { SearchComponent } from './search/search.component';
-import { FormsModule } from '@angular/forms';
+import { DetailsGraphComponent } from './details/coin/details-graph/details-graph.component';
+import { HeaderComponent } from './details/coin/header/header.component';
 import { DetailsComponent } from './details/details.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { NgChartsModule } from 'ng2-charts'
+import { ListComponent } from './list/list.component';
+import { SearchComponent } from './search/search.component';
+import { FooterGraphComponent } from './details/coin/footer-graph/footer-graph.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { NgChartsModule } from 'ng2-charts'
     ListComponent,
     DenominationComponent,
     SearchComponent,
-    DetailsComponent
+    DetailsComponent,
+    HeaderComponent,
+    DetailsGraphComponent,
+    FooterGraphComponent
   ],
   imports: [
     BrowserModule,

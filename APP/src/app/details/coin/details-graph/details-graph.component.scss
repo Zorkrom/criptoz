@@ -1,0 +1,18 @@
+.info {
+	display: flex;
+
+	&_important {
+		display: flex;
+		justify-content: space-between;
+
+		&_option:hover {
+			color: pink;
+		}
+	}
+}
+.details {
+	background-color: #1b1c1d;
+	border-radius: 20px;
+	padding: 20px;
+	margin-bottom: 30px;
+}
