@@ -23,36 +23,45 @@ export class DetailsGraphComponent implements OnInit {
   getDataLast24h() {
     this.prices = []
     this.dates = []
-    console.log(this.coin)
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}/market_chart?vs_currency=usd&days=1`)
       .subscribe(res => {
-        const allPrices = Array.from((res as Prices).prices)
-        allPrices.forEach((price: Array<number>) => {
-          this.dates.push(new Date(price[0]).getHours() + ":" + getMinutes(price[0]))
-          this.prices.push(price[1])
-        })
+        this.saveDataHourFormat(res)
         this.composeChart(13)
-        function getMinutes(date: number) {
-          const newDate: Date = new Date(date)
-          const minutes: string = newDate.getMinutes().toString()
-          if (minutes.length < 2) return "0" + minutes
-          return minutes
-        }
       })
   }
+
   getDataFromDays(numberDays: number) {
     this.prices = []
     this.dates = []
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}/market_chart?vs_currency=usd&days=${numberDays}`)
       .subscribe(res => {
-        const allPrices = Array.from((res as Prices).prices)
-        allPrices.forEach((price: Array<number>) => {
-          this.dates.push(new Date(price[0]).toDateString().substring(0, new Date(price[0]).toDateString().length - 4))
-          this.prices.push(price[1])
-        })
+        this.saveDataDateFormat(res)
         this.composeChart(15)
       })
   }
+
+  saveDataHourFormat(res: any): void {
+    const allPrices = Array.from((res as Prices).prices)
+    allPrices.forEach((price: Array<number>) => {
+      this.dates.push(new Date(price[0]).getHours() + ":" + getMinutes(price[0]))
+      this.prices.push(price[1])
+    })
+    function getMinutes(date: number) {
+      const newDate: Date = new Date(date)
+      const minutes: string = newDate.getMinutes().toString()
+      if (minutes.length < 2) return "0" + minutes
+      return minutes
+    }
+  }
+
+  saveDataDateFormat(res: any): void {
+    const allPrices = Array.from((res as Prices).prices)
+    allPrices.forEach((price: Array<number>) => {
+      this.dates.push(new Date(price[0]).toDateString().substring(0, new Date(price[0]).toDateString().length - 4))
+      this.prices.push(price[1])
+    })
+  }
+
   composeChart(interval: number) {
     let gradient: any;
     function getGradient(ctx: any) {

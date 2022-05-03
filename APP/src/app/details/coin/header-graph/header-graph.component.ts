@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Coin } from '../../../../shared/coin';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-header-graph',
+  templateUrl: './header-graph.component.html',
+  styleUrls: ['./header-graph.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderGraphComponent implements OnInit {
   @Input() coin: Coin = {} as Coin
   constructor(private router:Router) { }
 

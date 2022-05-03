@@ -3,7 +3,7 @@
     <div class="info_important">
       <h1>${{coin.market_data.current_price.usd}} USD</h1>
       <h5 class="ms-2 mt-1" [ngClass]="coin.market_data.price_change_24h > 0 ? 'text-success':'text-danger'">
-        {{coin.market_data.price_change_24h}}</h5>
+        {{coin.market_data.price_change_24h}}$</h5>
     </div>
     <div class="info_important">
       <h5 (click)="getDataLast24h()" class="info_important_option">24h</h5>

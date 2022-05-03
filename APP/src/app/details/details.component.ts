@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { Coin } from '../../shared/coin';
-import { Prices } from '../../shared/prices';
 
 
 @Component({
@@ -57,13 +56,22 @@ export class DetailsComponent implements OnInit {
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}`)
       .subscribe(res => {
         this.coin = res as Coin
-        this.coin.market_data.market_cap.usd = new Intl.NumberFormat().format(parseInt(this.coin.market_data.market_cap.usd))
-        this.coin.market_data.high_24h.usd = "$" + new Intl.NumberFormat().format(parseFloat(this.coin.market_data.high_24h.usd))
-        this.coin.market_data.circulating_supply = new Intl.NumberFormat().format(parseInt(this.coin.market_data.circulating_supply)) + " " + this.coin.symbol.toUpperCase()
-        this.coin.market_data.max_supply = new Intl.NumberFormat().format(parseInt(this.coin.market_data.max_supply))
-        this.coin.links.homepage = this.coin.links.homepage.toString().split(',')[0]
+        this.coin.market_data.market_cap.usd = this.toFormatInteger(this.coin.market_data.market_cap.usd)
+        this.coin.market_data.high_24h.usd = "$" + this.toFormatFloat(this.coin.market_data.high_24h.usd)
+        this.coin.market_data.circulating_supply = this.toFormatInteger(this.coin.market_data.circulating_supply) + " " + this.coin.symbol.toUpperCase()
+        this.coin.market_data.max_supply = this.toFormatInteger(this.coin.market_data.max_supply)
+        this.coin.links.homepage = this.toFormatLink(this.coin.links.homepage)
         this.coin.symbol = "(" + this.coin.symbol + ")"
       })
+  }
+  toFormatInteger(data:string):string{
+    return new Intl.NumberFormat().format(parseInt(data))
+  }
+  toFormatFloat(data:string):string{
+    return new Intl.NumberFormat().format(parseFloat(data))
+  }
+  toFormatLink(data:string):string{
+    return data.toString().split(',')[0]
   }
 
 }

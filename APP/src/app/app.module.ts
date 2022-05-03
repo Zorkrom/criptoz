@@ -8,11 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DenominationComponent } from './denomination/denomination.component';
 import { DetailsGraphComponent } from './details/coin/details-graph/details-graph.component';
-import { HeaderComponent } from './details/coin/header/header.component';
+import { FooterGraphComponent } from './details/coin/footer-graph/footer-graph.component';
+import { HeaderGraphComponent } from './details/coin/header-graph/header-graph.component';
 import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
 import { SearchComponent } from './search/search.component';
-import { FooterGraphComponent } from './details/coin/footer-graph/footer-graph.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { FooterGraphComponent } from './details/coin/footer-graph/footer-graph.c
     DenominationComponent,
     SearchComponent,
     DetailsComponent,
-    HeaderComponent,
+    HeaderGraphComponent,
     DetailsGraphComponent,
     FooterGraphComponent
   ],
