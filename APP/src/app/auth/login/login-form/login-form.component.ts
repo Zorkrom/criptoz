@@ -11,8 +11,8 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginFormComponent {
 
   @Output() passChanged = new EventEmitter<string>()
-  public username:string = ''
-  public password:string = ''
+  private username:string = ''
+  private password:string = ''
   public error: boolean = false
   public errorMessage: string = ''
 

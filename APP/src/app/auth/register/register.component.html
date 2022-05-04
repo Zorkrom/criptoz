@@ -21,14 +21,14 @@
                     <a ><i class="eye fa fa-eye-slash" aria-hidden="true"  (click)="showPassword()"></i></a>
                 </div>
             </div>
-            <div class="mt-1 container input-group password">
+            <div class="mt-1 mb-4 container input-group password">
                 <input type="password" id="confirmPassword" class="passInput fadeIn third form-control" name="login"
                     placeholder="confirm password" (change)="getConfirmPassword($event)" (keyup)="enterKeyPressed($event)">
                 <div class="input-group-addon fadeIn third eyePass">
                     <a ><i class="eye fa fa-eye-slash" aria-hidden="true" (click)="showConfirmPassword()"></i></a>
                 </div>
             </div>
-            <label class="label-error mb-2"  aria-label="error"></label>
+            <label class="label-error mb-2"  aria-label="error" *ngIf="error">{{errorMessage}}</label>
         </form>
         <div id="formFooter">
             <input type="submit" class="fadeIn fourth" value="Register" (click)="register()">
