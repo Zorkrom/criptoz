@@ -12,7 +12,8 @@ import { FooterGraphComponent } from './details/coin/footer-graph/footer-graph.c
 import { HeaderGraphComponent } from './details/coin/header-graph/header-graph.component';
 import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './list/search/search.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SearchComponent } from './search/search.component';
     DetailsComponent,
     HeaderGraphComponent,
     DetailsGraphComponent,
-    FooterGraphComponent
+    FooterGraphComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
