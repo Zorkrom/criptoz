@@ -1,0 +1,37 @@
+<div class="mt-2 container loginButton goBack w-50" (click)="navigate()">
+    <div class="searchbox input-group input-group-lg">
+        <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <img class="search searchbox__icon" src="../../../assets/arrow-left.svg">
+    </div>
+</div>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <form>
+            <input type="text" id="login" class="userInput mt-4 fadeIn second" name="login" placeholder="username" (change)="getUsername($event)" (keyup)="enterKeyPressed($event)">
+            <div class="container input-group password">
+                <input type="password" id="password" class="passInput fadeIn third form-control" name="login"
+                    placeholder="password" (change)="getPassword($event)" (keyup)="enterKeyPressed($event)">
+                <div class="input-group-addon fadeIn third eyePass">
+                    <a ><i class="eye fa fa-eye-slash" aria-hidden="true"  (click)="showPassword()"></i></a>
+                </div>
+            </div>
+            <div class="mt-1 container input-group password">
+                <input type="password" id="confirmPassword" class="passInput fadeIn third form-control" name="login"
+                    placeholder="confirm password" (change)="getConfirmPassword($event)" (keyup)="enterKeyPressed($event)">
+                <div class="input-group-addon fadeIn third eyePass">
+                    <a ><i class="eye fa fa-eye-slash" aria-hidden="true" (click)="showConfirmPassword()"></i></a>
+                </div>
+            </div>
+            <label class="label-error mb-2"  aria-label="error"></label>
+        </form>
+        <div id="formFooter">
+            <input type="submit" class="fadeIn fourth" value="Register" (click)="register()">
+        </div>
+    </div>
+</div>

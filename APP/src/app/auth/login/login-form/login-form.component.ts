@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Token } from '../../../infraestructure/token';
-import { AuthService } from '../../services/auth.service';
+import { Token } from '../../../../infraestructure/token';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,24 +18,21 @@ export class LoginFormComponent {
 
   constructor(private router:Router, private auth: AuthService) { }
 
-  broadcast(){
-  }
-
-  getPassword(event:Event){
+  public getPassword(event:Event):string {
     const password = event.target as HTMLInputElement
     const value: string = password.value
     this.password = value.trim()
     return this.password
   }
 
-  getUsername(event: Event) {
+  public getUsername(event: Event):string {
     const username = event.target as HTMLInputElement
     const value: string = username.value
     this.username = value.trim()
     return this.username
   }
 
-  enterKeyPressed(event: any) {
+  public enterKeyPressed(event: any):boolean {
     if (event.key === "Enter") {
       this.login()
       return true
@@ -43,10 +40,9 @@ export class LoginFormComponent {
     return false
   }
 
-  login(){
+  public login():void{
     this.auth.getAuth(this.username,this.password)
     .subscribe((data) => {
-      console.log("ok: "+data.message)
       if(data.ok){
         Token.set(data.payload!.toString())
         this.router.navigate(['/list'])
@@ -55,9 +51,17 @@ export class LoginFormComponent {
         this.errorMessage = data.message!
       }
     })
-    
   }
-  navigate():void{
+
+  public showPassword():void {
+    const password = document.getElementById("password")!
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+  }
+  public navigate():void{
     this.router.navigate(['/list'])
+  }
+  public toRegister():void{
+    this.router.navigate(['/register'])
   }
 }

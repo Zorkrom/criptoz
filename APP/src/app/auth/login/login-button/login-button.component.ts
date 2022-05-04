@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Token } from '../../../infraestructure/token';
+import { Token } from '../../../../infraestructure/token';
 
 @Component({
   selector: 'app-login-button',
