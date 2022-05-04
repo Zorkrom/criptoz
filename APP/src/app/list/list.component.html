@@ -12,9 +12,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="selected" *ngFor="let coin of filteredCoins; let i = index" (mouseup)="navigate(coin.id)">
-                <td class="text-muted">{{i+1}}</td>
-                <td>
+            <tr class="selected" *ngFor="let coin of filteredCoins; let i = index">
+                <td class="text-muted" (mouseup)="navigate(coin.id)">{{i+1}} </td>
+                <td (mouseup)="navigate(coin.id)">
                     <img [src]="coin.image" style="width: 2rem;">
                     <span class="ms-3">
                         {{coin.name}}
@@ -23,16 +23,19 @@
                         {{coin.symbol}}
                     </span>
                 </td>
-                <td>
+                <td (mouseup)="navigate(coin.id)">
                     ${{coin.current_price}}
                 </td>
-                <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success':'text-danger'">
+                <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success':'text-danger'"
+                    (mouseup)="navigate(coin.id)">
                     {{coin.price_change_percentage_24h}}
                 </td>
-                <td>
+                <td (mouseup)="navigate(coin.id)">
                     {{coin.total_volume}}
                 </td>
-
+                <td *ngIf="isLogged()">
+                    <app-action [coinID]="coin.id"></app-action>
+                </td>
             </tr>
         </tbody>
     </table>

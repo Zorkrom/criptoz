@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Token } from '../../infraestructure/token';
 
 interface Coin {
   id: string
@@ -71,5 +72,9 @@ export class ListComponent implements OnInit {
   }
   navigate(coinID:string){
     this.router.navigate(['details/',coinID])
+  }
+
+  isLogged() {
+    return Token.isValid()
   }
 }

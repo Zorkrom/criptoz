@@ -18,6 +18,7 @@ import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
 import { SearchComponent } from './list/search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ActionComponent } from './list/action/action.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LoginButtonComponent,
     LoginFormComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ActionComponent
   ],
   imports: [
     BrowserModule,
