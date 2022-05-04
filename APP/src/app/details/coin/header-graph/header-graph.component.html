@@ -1,15 +1,19 @@
 <div class="mb-4">
-    <div class="container goBack mb-4 mt-2 w-50">
-      <div class="searchbox input-group input-group-lg" (click)="navigate()">
+  <div class="goBack">
+    <div class="searchButton toolbar">
+      <div class=" searchbox input-group input-group-lg" (click)="navigate()">
         <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
         </div>
         <img class="search searchbox__icon" src="../../assets/arrow-left.svg">
       </div>
     </div>
-  
-    <div class="container header">
-      <img src="{{coin.image.large}}" alt="" width="100px">
-      <h1 class="ms-3">{{coin.name}}</h1>
-      <h3 class="text-muted text-uppercase ms-2">{{coin.symbol}}</h3>
+    <div>
+      <app-login-button></app-login-button>
     </div>
-  
+  </div>
+</div>
+<div class="container header">
+  <img src="{{coin.image.large}}" alt="" width="100px">
+  <h1 class="ms-3">{{coin.name}}</h1>
+  <h3 class="text-muted text-uppercase ms-2">{{coin.symbol}}</h3>
+</div>

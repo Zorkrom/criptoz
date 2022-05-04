@@ -6,6 +6,9 @@ export default class Users{
         return DBClient.getCollection('cryptoz')
     }
 
+    static async getAll():Promise<Array<Object>>{
+        return await this.collection().find({}, {projection: {_id:false}}).toArray()
+    }
     static async save(user: Object): Promise<void> {
         await this.collection().insertOne(user)
     }

@@ -1,4 +1,7 @@
-<app-search (onChange)="filterByName($event)"></app-search>
+<div class="toolbar mb-2">
+    <app-search (onChange)="filterByName($event)" class="searchButton"></app-search>
+    <app-login-button class="mb-4 mt-2 "></app-login-button>
+</div>
 <div class="container coinList table-responsive mb-4">
     <table class="coinList table">
         <thead>
@@ -29,8 +32,8 @@
                 <td>
                     {{coin.total_volume}}
                 </td>
-  
+
             </tr>
         </tbody>
     </table>
-  </div>
+</div>

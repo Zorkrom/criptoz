@@ -5,3 +5,12 @@
 .selected:hover{
     background-color: #0d0e0e;
 }
+.toolbar{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchButton{
+    min-width: 100px;
+    max-width: 500px;
+}

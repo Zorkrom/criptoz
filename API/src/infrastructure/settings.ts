@@ -7,5 +7,7 @@ export default class Settings {
     static dbName(): string {
         return 'cryptoz'
     }
-
+    static secretKey():string{
+        return 'secretProject'
+    }
 }

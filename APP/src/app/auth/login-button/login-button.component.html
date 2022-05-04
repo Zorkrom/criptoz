@@ -1,0 +1,14 @@
+<div *ngIf="!isLogged()" class="container loginButton goBack w-50">
+  <div class="searchbox input-group input-group-lg" (click)="toLogin()">
+    <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <img class="search searchbox__icon" src="../../../assets/person-fill.svg">
+  </div>
+</div>
+<div *ngIf="isLogged()" class="container loginButton goBack w-50">
+  <div class="searchbox input-group input-group-lg" (click)="toLogout()">
+    <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <img class="search searchbox__icon" src="../../../assets/door-open.svg">
+  </div>
+</div>

@@ -13,14 +13,14 @@ describe('endpoints api test', () => {
 
   beforeEach(async () => {
     await Users.flush()
-})
+  })
   it('create user', async () => {
     const message = {
-      name: "test",
-      surname: "surtest"
+      username: "test",
+      password: "surtest"
     }
-    const result = await request(app).post('/create').send(message)
-    expect(result.body.membership).toBe('free')
+    const result = await request(app).post('/login/register').send(message)
+    expect(result.body.ok).toBe(true)
   })
 
 })

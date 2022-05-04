@@ -1,19 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InfoService {
 
-  private baseUrl: string = "http://localhost:3001"
-
 
   constructor( private http: HttpClient ) {   }
 
   getName(): Observable<string> {
-    const url:string = this.baseUrl + '/name'
+    const url:string = environment.baseUrl + '/name'
     const requestOptions: Object = {
       responseType: 'text'
     }
