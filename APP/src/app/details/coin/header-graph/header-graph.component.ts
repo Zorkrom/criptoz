@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Coin } from '../../../../shared/coin';
+import { CoinDetails } from '../../../../shared/coinDetails';
 
 @Component({
   selector: 'app-header-graph',
@@ -8,7 +8,7 @@ import { Coin } from '../../../../shared/coin';
   styleUrls: ['./header-graph.component.scss']
 })
 export class HeaderGraphComponent implements OnInit {
-  @Input() coin: Coin = {} as Coin
+  @Input() coin: CoinDetails = {} as CoinDetails
   constructor(private router:Router) { }
 
   ngOnInit(): void {

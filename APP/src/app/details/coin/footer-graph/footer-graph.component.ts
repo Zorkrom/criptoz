@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Coin } from '../../../../shared/coin';
+import { CoinDetails } from '../../../../shared/coinDetails';
 
 @Component({
   selector: 'app-footer-graph',
@@ -7,7 +7,7 @@ import { Coin } from '../../../../shared/coin';
   styleUrls: ['./footer-graph.component.scss']
 })
 export class FooterGraphComponent implements OnInit {
-  @Input() coin: Coin = {} as Coin
+  @Input() coin: CoinDetails = {} as CoinDetails
 
   constructor() { }
 

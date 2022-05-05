@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Coin } from '../../../../shared/coin';
+import { CoinDetails } from '../../../../shared/coinDetails';
 import { Prices } from '../../../../shared/prices';
 
 @Component({
@@ -13,7 +13,7 @@ export class DetailsGraphComponent implements OnInit {
   chart: Chart = null!
   prices: Array<number> = []
   dates: Array<string> = []
-  @Input() coin: Coin = {} as Coin
+  @Input() coin: CoinDetails = {} as CoinDetails
   @Input() coinID: string = ''
   constructor(private http: HttpClient) { }
 

@@ -8,15 +8,11 @@ import { InfoService } from '../services/info.service';
 })
 export class DenominationComponent implements OnInit {
   
-  public denomination :string = 'No info yet'
+  public denomination :string = 'CriptoZ'
 
   constructor(private infoService: InfoService) { }
 
-  getDenomination(): void {
-    this.infoService.getName().subscribe( data => this.denomination = data )
-  }
   
   ngOnInit(): void {
-    this.getDenomination();
   }
 }

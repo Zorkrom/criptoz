@@ -7,11 +7,13 @@ import JwtVerifier from '../../src/infrastructure/jwtVerifier'
 describe('endpoints api test', () => {
 
   beforeAll(async () => {
+    
     DBClient.getInstance().connect()
+    await Users.flush()
+
   })
 
   afterAll(async () => { 
-    await Users.flush()
     DBClient.getInstance().disconnect() 
   })
 

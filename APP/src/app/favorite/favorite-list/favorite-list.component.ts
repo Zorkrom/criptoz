@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Token } from '../../infraestructure/token';
-import { Coin } from '../../shared/coin';
-import { CoinService } from '../services/coin.service';
+import { Token } from '../../../infraestructure/token';
+import { Coin } from '../../../shared/coin';
+import { CoinService } from '../../services/coin.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-favorite-list',
+  templateUrl: './favorite-list.component.html',
+  styleUrls: ['./favorite-list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class FavoriteListComponent implements OnInit {
   favorites: Array<string> = []
   searchTerm: string = ''
   allCoins: Array<Coin> = []
+  favoriteCoins: Array<Coin> = []
   filteredCoins: Array<Coin> = []
   headers: Array<string> = [
     'Nº',
@@ -40,8 +41,6 @@ export class ListComponent implements OnInit {
       'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .subscribe((res) => {
         this.allCoins = res as Array<Coin>
-        this.putThousandCommasPrice()
-        this.putThousandCommasVolume()
         this.allCoins.forEach(coin => {
           if (this.favorites.includes(coin.id)) {
             coin.favorite = true
@@ -50,17 +49,25 @@ export class ListComponent implements OnInit {
         this.allCoins.sort(function (x, y) {
           return (x.favorite === y.favorite) ? 0 : x.favorite ? -1 : 1;
         })
+        this.getFavoriteCoins(this.allCoins)
+        this.putThousandCommasPrice()
+        this.putThousandCommasVolume()
       })
+  }
+  getFavoriteCoins(allCoins: Array<Coin>) {
+    allCoins.forEach((coin: Coin) => {
+      if (coin.favorite) this.favoriteCoins.push(coin)
+    })
 
   }
   putThousandCommasVolume() {
-    this.allCoins.forEach(coin => {
+    this.favoriteCoins.forEach(coin => {
       coin.total_volume = new Intl.NumberFormat().format(parseInt(coin.total_volume))
     })
-    this.filteredCoins = this.allCoins
+    this.filteredCoins = this.favoriteCoins
   }
   putThousandCommasPrice() {
-    this.allCoins.forEach(coin => {
+    this.favoriteCoins.forEach(coin => {
       if (parseFloat(coin.current_price) >= 1) {
         coin.current_price = coin.current_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
@@ -73,7 +80,7 @@ export class ListComponent implements OnInit {
   }
   filterCoins() {
     this.filteredCoins = []
-    this.allCoins.forEach((coin, index) => {
+    this.favoriteCoins.forEach((coin, index) => {
       if (coin.name.includes(this.searchTerm)) this.filteredCoins.push(coin)
     })
   }
@@ -102,5 +109,8 @@ export class ListComponent implements OnInit {
 
   isLogged() {
     return Token.isValid()
+  }
+  goList() {
+    this.router.navigate(['list'])
   }
 }

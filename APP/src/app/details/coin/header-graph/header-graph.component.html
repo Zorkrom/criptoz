@@ -1,16 +1,9 @@
 <div class="mb-4">
   <div class="goBack">
-    <div class="searchButton toolbar">
-      <div class=" searchbox input-group input-group-lg" (click)="navigate()">
-        <div class="searchbox__input form-control bg-dark" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-        </div>
-        <img class="search searchbox__icon" src="../../assets/arrow-left.svg">
-      </div>
-    </div>
-    <div>
+    <app-go-back></app-go-back>
       <app-login-button></app-login-button>
     </div>
-  </div>
+  
 </div>
 <div class="container header">
   <img src="{{coin.image.large}}" alt="" width="100px">

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
-import { Coin } from '../../shared/coin';
+import { CoinDetails } from '../../shared/coinDetails';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   prices: Array<number> = []
   dates: Array<string> = []
   coinID: string = ''
-  coin: Coin = {
+  coin: CoinDetails = {
     id: "",
     name: "",
     symbol: "",
@@ -55,7 +55,7 @@ export class DetailsComponent implements OnInit {
     this.coinID = this.route.snapshot.paramMap.get('id') || 'No hay id'
     this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}`)
       .subscribe(res => {
-        this.coin = res as Coin
+        this.coin = res as CoinDetails
         this.coin.market_data.market_cap.usd = this.toFormatInteger(this.coin.market_data.market_cap.usd)
         this.coin.market_data.high_24h.usd = "$" + this.toFormatFloat(this.coin.market_data.high_24h.usd)
         this.coin.market_data.circulating_supply = this.toFormatInteger(this.coin.market_data.circulating_supply) + " " + this.coin.symbol.toUpperCase()
