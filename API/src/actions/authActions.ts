@@ -6,7 +6,7 @@ export class AuthActions{
     public static async create(username:string,password:string):Promise<object>{
         const exists:boolean = await AuthService.userExists(username)
         if(exists) return {ok:false}
-        await AuthService.create({username:username,password:password})
+        await AuthService.create({username:username,password:password,favorites:[]})
         const response:any = await this.verifyUser(username,password)
         response.ok= true
         return response

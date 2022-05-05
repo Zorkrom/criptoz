@@ -34,7 +34,7 @@
                     {{coin.total_volume}}
                 </td>
                 <td *ngIf="isLogged()">
-                    <app-action [coinID]="coin.id"></app-action>
+                    <app-action [coinID]="coin.id" [favoriteCoins]="favorites" (emitFavorite)="saveFavorite($event)"></app-action>
                 </td>
             </tr>
         </tbody>

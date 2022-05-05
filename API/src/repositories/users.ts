@@ -15,4 +15,14 @@ export default class Users{
     static async flush(): Promise<void> {
         await this.collection().deleteMany({})
     }
+    static async saveFavorites(username:string,coins:Array<string>): Promise<void>{
+        await this.collection().updateOne({username:username},{
+            $set:{
+                favorites:coins
+            }
+        })
+    }
+    static async getFavorites(username:string){
+        return await this.collection().findOne({username:username})
+    }
 }

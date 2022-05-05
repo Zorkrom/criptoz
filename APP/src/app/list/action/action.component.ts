@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-action',
@@ -7,7 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ActionComponent implements OnInit {
   @Input() coinID: string = ''
-  checked:boolean = false
+  @Input() favoriteCoins:Array<string> = []
+  @Output() emitFavorite = new EventEmitter()
+
+  favorites:Array<string> = []
   image:string
   private emptyStar:string="../../../assets/star.svg"
   private fullStar:string="../../../assets/star-fill.svg"
@@ -17,19 +21,23 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.favoriteCoins.includes(this.coinID)) this.image=this.fullStar
   }
-  favorite(){
-    console.log(this.coinID)
+  public favorite(){
     this.isChecked()
-    console.log(this.checked)
+    this.addFavorite()
   }
-  isChecked(){
-    if(this.checked){
-      this.checked=false
+  addFavorite(){
+    this.emitFavorite.emit(this.coinID)
+  }
+  public getFavorites(){
+  }
+  public isChecked(){
+    if(this.favoriteCoins.includes(this.coinID)){
       this.image=this.emptyStar
     }else{
-      this.checked=true
       this.image=this.fullStar
     }
+
   }
 }
