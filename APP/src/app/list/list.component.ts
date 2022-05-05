@@ -68,13 +68,13 @@ export class ListComponent implements OnInit {
   }
   filterByName(event: string) {
     this.searchTerm = ''
-    if (event.length != 0) this.searchTerm = event
+    if (event.length != 0) this.searchTerm = event.toLowerCase()
     this.filterCoins()
   }
   filterCoins() {
     this.filteredCoins = []
     this.allCoins.forEach((coin, index) => {
-      if (coin.name.includes(this.searchTerm)) this.filteredCoins.push(coin)
+      if (coin.name.toLowerCase().includes(this.searchTerm)) this.filteredCoins.push(coin)
     })
   }
 

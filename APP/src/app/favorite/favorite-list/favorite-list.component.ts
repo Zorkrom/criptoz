@@ -72,16 +72,16 @@ export class FavoriteListComponent implements OnInit {
         coin.current_price = coin.current_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
     })
-  }
+  } 
   filterByName(event: string) {
     this.searchTerm = ''
-    if (event.length != 0) this.searchTerm = event
+    if (event.length != 0) this.searchTerm = event.toLowerCase()
     this.filterCoins()
   }
   filterCoins() {
     this.filteredCoins = []
     this.favoriteCoins.forEach((coin, index) => {
-      if (coin.name.includes(this.searchTerm)) this.filteredCoins.push(coin)
+      if (coin.name.toLowerCase().includes(this.searchTerm)) this.filteredCoins.push(coin)
     })
   }
 
