@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { CoinDetails } from '../../shared/coinDetails';
+import { CoinService } from '../services/coin.service';
 
 
 @Component({
@@ -49,12 +50,12 @@ export class DetailsComponent implements OnInit {
 
   }
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, 
+              private router: Router, private coinService:CoinService) { }
 
   ngOnInit(): void {
     this.coinID = this.route.snapshot.paramMap.get('id') || 'No hay id'
-    this.http.get(`https://api.coingecko.com/api/v3/coins/${this.coinID}`)
-      .subscribe(res => {
+    this.coinService.getCoin(this.coinID).subscribe(res => {
         this.coin = res as CoinDetails
         this.coin.market_data.market_cap.usd = this.toFormatInteger(this.coin.market_data.market_cap.usd)
         this.coin.market_data.high_24h.usd = "$" + this.toFormatFloat(this.coin.market_data.high_24h.usd)
