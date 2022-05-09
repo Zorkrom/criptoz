@@ -23,7 +23,8 @@ export class FavoriteListComponent implements OnInit {
     'Price Change',
     '24h Volume'
   ]
-  constructor(private http: HttpClient, private router: Router, private coinService: CoinService) { }
+  constructor(private http: HttpClient, private router: Router, 
+              private coinService: CoinService) { }
 
   ngOnInit(): void {
     this.getCoins()
@@ -37,9 +38,7 @@ export class FavoriteListComponent implements OnInit {
     }
   }
   getCoins() {
-    this.http.get(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-      .subscribe((res) => {
+    this.coinService.getAllCoins().subscribe((res) => {
         this.allCoins = res as Array<Coin>
         this.allCoins.forEach(coin => {
           if (this.favorites.includes(coin.id)) {
