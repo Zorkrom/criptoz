@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +22,7 @@ import { ListComponent } from './list/list.component';
 import { SearchComponent } from './list/search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoBackComponent } from './go-back/go-back.component';
+import { CacheInterceptor } from './interceptor/cache.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { GoBackComponent } from './go-back/go-back.component';
     NgChartsModule
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
