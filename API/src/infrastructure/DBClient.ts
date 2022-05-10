@@ -5,7 +5,7 @@ export type DBCollection = Collection
 
 export class DBClient {
     private static instance: DBClient
-    private static URL: string = Settings.dbUri()
+    private static URL: string = Settings.dbUriAcces
     private static databaseName: string = Settings.dbName()
     private static client: MongoClient
 
