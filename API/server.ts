@@ -5,7 +5,7 @@ import Logger from './src/infrastructure/logger'
 
 const port = 3001
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   Logger.info(`Example app listening on port ${port}`)
 })
 
