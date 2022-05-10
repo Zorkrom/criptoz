@@ -25,30 +25,33 @@ export class ListComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private coinService: CoinService) { }
 
   ngOnInit(): void {
-    this.getCoins()
     if (Token.isValid()) {
       this.coinService.getFavorites().subscribe((data) => {
         const favoritesCoin = data.payload as Array<string>
         favoritesCoin.forEach((coin: string) => {
           this.favorites.push(coin)
         })
+        this.getCoins()
       })
+    }else{
+      this.getCoins()
     }
+
   }
   getCoins() {
     this.coinService.getAllCoins().subscribe((res) => {
-        this.allCoins = res as Array<Coin>
-        this.putThousandCommasPrice()
-        this.putThousandCommasVolume()
-        this.allCoins.forEach(coin => {
-          if (this.favorites.includes(coin.id)) {
-            coin.favorite = true
-          }
-        })
-        this.allCoins.sort(function (x, y) {
-          return (x.favorite === y.favorite) ? 0 : x.favorite ? -1 : 1;
-        })
+      this.allCoins = res as Array<Coin>
+      this.putThousandCommasPrice()
+      this.putThousandCommasVolume()
+      this.allCoins.forEach(coin => {
+        if (this.favorites.includes(coin.id)) {
+          coin.favorite = true
+        }
       })
+      this.allCoins.sort(function (x, y) {
+        return (x.favorite === y.favorite) ? 0 : x.favorite ? -1 : 1;
+      })
+    })
 
   }
   putThousandCommasVolume() {

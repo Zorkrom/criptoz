@@ -23,6 +23,7 @@ import { SearchComponent } from './list/search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoBackComponent } from './go-back/go-back.component';
 import { CacheInterceptor } from './interceptor/cache.interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CacheInterceptor } from './interceptor/cache.interceptor';
     
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

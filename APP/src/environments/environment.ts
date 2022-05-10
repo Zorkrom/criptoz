@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:3001"
+  baseUrl: "https://criptozproject.herokuapp.com"
 };
 
 /*

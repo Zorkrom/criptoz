@@ -1,3 +1,5 @@
+build-web:
+	cd APP &&  rm -R dist && rm -r ../API/public && ng build && cp -R dist/app ../API/public
 build-all: 
 	docker-compose build
 

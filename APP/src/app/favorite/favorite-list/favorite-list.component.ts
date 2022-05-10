@@ -27,13 +27,13 @@ export class FavoriteListComponent implements OnInit {
               private coinService: CoinService) { }
 
   ngOnInit(): void {
-    this.getCoins()
     if (Token.isValid()) {
       this.coinService.getFavorites().subscribe((data) => {
         const favoritesCoin = data.payload as Array<string>
         favoritesCoin.forEach((coin: string) => {
           this.favorites.push(coin)
         })
+        this.getCoins()
       })
     }
   }

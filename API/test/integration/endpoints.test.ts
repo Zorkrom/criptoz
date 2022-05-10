@@ -8,13 +8,13 @@ describe('endpoints api test', () => {
 
   beforeAll(async () => {
     
-    DBClient.getInstance().connect()
+    await DBClient.getInstance().connect()
     await Users.flush()
 
   })
 
   afterAll(async () => { 
-    DBClient.getInstance().disconnect() 
+    await DBClient.getInstance().disconnect() 
   })
 
   beforeEach(async () => {
