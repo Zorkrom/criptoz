@@ -1,5 +1,6 @@
 # compiled output
 /APP/dist
+/API/public
 
 # dependencies
 /APP/node_modules
